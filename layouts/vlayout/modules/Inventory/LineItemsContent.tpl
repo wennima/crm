@@ -42,12 +42,15 @@
 	{assign var="productDeleted" value="productDeleted"|cat:$row_no}
         {assign var="productId" value=$data[$hdnProductId]}
         {assign var="listPriceValues" value=Products_Record_Model::getListPriceValues($productId)}
+
+    {assign var='test_field' value='test_field_data'}
 	<td>
 		<i class="icon-trash deleteRow cursorPointer" title="{vtranslate('LBL_DELETE',$MODULE)}"></i>
 		&nbsp;<a><img src="{vimage_path('drag.png')}" border="0" title="{vtranslate('LBL_DRAG',$MODULE)}"/></a>
 		<input type="hidden" class="rowNumber" value="{$row_no}" />
 	</td>
 	<td>
+		<span>{$test_field}</span>
 		<!-- Product Re-Ordering Feature Code Addition Starts -->
 		<input type="hidden" name="hidtax_row_no{$row_no}" id="hidtax_row_no{$row_no}" value="{$tax_row_no}"/>
 		<!-- Product Re-Ordering Feature Code Addition ends -->
