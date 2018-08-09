@@ -32,7 +32,7 @@
 				</div>
 				<hr>
 				<div class="blockData">
-					<table class="table detailview-table no-border">
+					<table class="table detailview-table no-border aaa">
 						<tbody>
 							<tr>
 								<td class="fieldLabel">
@@ -56,7 +56,7 @@
 				</div>
 				<hr>
 				<div class="blockData">
-					<table class="table detailview-table no-border">
+					<table class="table detailview-table no-border bbb">
 						<tbody>
 							{foreach from=$MODULE_MODEL->getFields() item=FIELD_TYPE key=FIELD}
 								{if $FIELD neq 'logoname' && $FIELD neq 'logo' }
