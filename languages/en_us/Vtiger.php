@@ -682,7 +682,7 @@ $languageStrings = array(
 	'Status' => 'Status',
 	'Vendor Name'=>'Vendor Name',
 
-	'LBL_ADDRESS_INFORMATION' => 'Address Details',
+	'LBL_ADDRESS_INFORMATION' => 'Address Details1',
 	'LBL_DESCRIPTION_INFORMATION' => 'Description Details',
 	'LBL_TERMS_INFORMATION' => 'Terms & Conditions',
 	'LBL_PRICING_INFORMATION' => 'Pricing Information',
