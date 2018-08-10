@@ -20,6 +20,7 @@ class SalesOrder_DetailView_Model extends Inventory_DetailView_Model {
 		$currentUserModel = Users_Privileges_Model::getCurrentUserPrivilegesModel();
 
 		$linkModelList = parent::getDetailViewLinks($linkParams);
+		echo '<pre>';print_r($linkModelList);echo '</pre>';
 		die('<h1>Testtt</h1>');
 		$recordModel = $this->getRecord();
 
