@@ -280,7 +280,7 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 		$recordStrucure = Vtiger_RecordStructure_Model::getInstanceFromRecordModel($recordModel, Vtiger_RecordStructure_Model::RECORD_STRUCTURE_MODE_DETAIL);
 		$structuredValues = $recordStrucure->getStructure();
         #echo '<pre>';print_r($structuredValues);echo '</pre>';
-        echo '<h1>'.get_class($recordStrucure);echo '</h1>'; 
+        echo '<h1>'.get_class($recordStrucureValues);echo '</h1>'; 
 		die('<h1>DONE</h1>');
 		$moduleModel = $recordModel->getModule();
 
