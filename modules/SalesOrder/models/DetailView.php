@@ -21,7 +21,9 @@ class SalesOrder_DetailView_Model extends Inventory_DetailView_Model {
 
 		$linkModelList = parent::getDetailViewLinks($linkParams);
 		echo '<pre>';print_r($linkModelList);echo '</pre>';
-		die('<h1>Testtt</h1>');
+		echo '<h1>*******</h1>';
+		echo '<pre>';print_r($_SESSION['authenticated_user_id']);echo '</pre>';
+		echo '<h1>*******</h1>';
 		$recordModel = $this->getRecord();
 
 		$invoiceModuleModel = Vtiger_Module_Model::getInstance('Invoice');
@@ -45,6 +47,9 @@ class SalesOrder_DetailView_Model extends Inventory_DetailView_Model {
 			);
 			$linkModelList['DETAILVIEW'][] = Vtiger_Link_Model::getInstanceFromValues($basicActionLink);
 		}
+
+        echo '<pre>';print_r($linkModelList);echo '</pre>';
+		die('<h1>Testtt</h1>');
 		return $linkModelList;
 	}
 		
