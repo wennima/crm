@@ -379,6 +379,8 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 		$moduleModel = $recordModel->getModule();
 		$viewer->assign('CURRENT_USER_MODEL', Users_Record_Model::getCurrentUserModel());
 		$viewer->assign('RECORD_STRUCTURE', $structuredValues);
+		echo '<pre>';print_r($structuredValues);echo '</pre>';
+		die('<h1>DONE</h1>');
 		$viewer->assign('BLOCK_LIST', $moduleModel->getBlocks());
 		echo $viewer->view('DetailViewSummaryContents.tpl', $moduleName, true);
 	}
