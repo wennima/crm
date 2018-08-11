@@ -279,14 +279,6 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 		$recordModel = $this->record->getRecord();
 		$recordStrucure = Vtiger_RecordStructure_Model::getInstanceFromRecordModel($recordModel, Vtiger_RecordStructure_Model::RECORD_STRUCTURE_MODE_DETAIL);
 		$structuredValues = $recordStrucure->getStructure();
-        #echo '<pre>';print_r($structuredValues);echo '</pre>';
-        foreach($structuredValues as $label=>$block){
-        	echo 'block_lable : '.$label.'<br>';
-
-        }
-       # echo '<h1>'.get_class($recordStrucure);echo '</h1>'; 
-        #var_dump($structuredValues);
-		#die('<h1>DONE</h1>');
 		$moduleModel = $recordModel->getModule();
 
 		$viewer = $this->getViewer($request);
