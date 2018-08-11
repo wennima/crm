@@ -281,8 +281,8 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 		$structuredValues = $recordStrucure->getStructure();
         #echo '<pre>';print_r($structuredValues);echo '</pre>';
         #echo '<h1>'.get_class($structuredValues);echo '</h1>'; 
-        var_dump($structuredValues);
-		die('<h1>DONE</h1>');
+        #var_dump($structuredValues);
+		#die('<h1>DONE</h1>');
 		$moduleModel = $recordModel->getModule();
 
 		$viewer = $this->getViewer($request);
