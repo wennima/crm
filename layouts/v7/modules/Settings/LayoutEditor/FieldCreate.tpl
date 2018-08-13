@@ -64,6 +64,35 @@
 							</select>
 						</div>
 					</div>
+
+					<!-- test user group -->
+					{if !$IS_FIELD_EDIT_MODE}
+                        <div class="form-group blockControlGroup hide">
+							<label class="control-label fieldLabel col-sm-5">
+								User Group
+							</label>
+							<div class="controls col-sm-7">
+								<select class="blockList col-sm-9" name="groupid">
+									<option value='0'>No Group Limit</option>
+									<option value='1'>Group1</option>
+									<option value='2'>Group2</option>
+								</select>
+							</div>
+						</div> 
+					{/if}
+					<div class="form-group">
+						<label class="control-label fieldLabel col-sm-5">
+							User Group:
+						</label>
+						<div class="controls col-sm-7">
+							<select class="fieldTypesList col-sm-9" name="groupid" {if $IS_FIELD_EDIT_MODE} disabled="disabled"{/if}>
+								<option value='0'>No Group Limit</option>
+									<option value='1'>Group1</option>
+									<option value='2'>Group2</option>
+							</select>
+						</div>
+					</div>
+					<!-- test user group end -->
 					<div class="form-group">
 						<label class="control-label fieldLabel col-sm-5">
 							{vtranslate('LBL_LABEL_NAME', $QUALIFIED_MODULE)}
