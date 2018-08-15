@@ -76,10 +76,10 @@
 									<option value='0'>No Group Limit</option>
 									<!--<option value='1'>Group1</option>
 									<option value='2'>Group2</option>-->
-									{foreach item=TEST_GROUP from=$TEST_GROUPS}
+									{foreach item=USER_GROUP from=$USER_GROUPS}
 									
-									<option value="{$TEST_GROUP}" >
-										{$TEST_GROUP}
+									<option value="{$USER_GROUP['groupid']}" >
+										{$USER_GROUP['groupname']}
 									</option>
 								{/foreach}
 								</select>
@@ -95,9 +95,9 @@
 								<option value='0'>No Group Limit</option>
 									<!--<option value='1'>Group1</option>
 									<option value='2'>Group2</option>-->
-									{foreach item=TEST_GROUP from=$TEST_GROUPS}
-									<option value="{$TEST_GROUP}" >
-										{$TEST_GROUP}
+									{foreach item=USER_GROUP from=$USER_GROUPS}
+									<option value="{$USER_GROUP['groupid']}" >
+										{$USER_GROUP['groupname']}
 									</option>
 								{/foreach}
 							</select>

@@ -98,11 +98,12 @@ class Settings_LayoutEditor_Index_View extends Settings_Vtiger_Index_View {
 	                    );
         #get real user groups  & user_info.group
         $groups = Settings_Groups_Record_Model::getAll();
-        echo "<pre>";print_r($groups);echo "</pre>";
-        die('done');
+        #echo "<pre>";print_r($groups);echo "</pre>";
+        #die('done');
 		
 		$viewer = $this->getViewer($request);
 		$viewer->assign('TEST_GROUPS',$test_groups);
+		$viewer->assign('USER_GROUPS',$groups);
 		$viewer->assign('CLEAN_FIELD_MODEL', $cleanFieldModel);
 		$viewer->assign('REQUEST_INSTANCE', $request);
 		$viewer->assign('SELECTED_MODULE_NAME', $sourceModule);
