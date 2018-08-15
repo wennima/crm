@@ -78,8 +78,8 @@
 									<option value='2'>Group2</option>-->
 									{foreach item=USER_GROUP from=$USER_GROUPS}
 									
-									<option value="{$USER_GROUP['groupid']}" >
-										{$USER_GROUP['groupname']}
+									<option value="{$USER_GROUP->getId()}" >
+										{$USER_GROUP->getName()}
 									</option>
 								{/foreach}
 								</select>
@@ -96,8 +96,8 @@
 									<!--<option value='1'>Group1</option>
 									<option value='2'>Group2</option>-->
 									{foreach item=USER_GROUP from=$USER_GROUPS}
-									<option value="{$USER_GROUP['groupid']}" >
-										{$USER_GROUP['groupname']}
+									<option value="{$USER_GROUP->getId()}" >
+										{$USER_GROUP->getName()}
 									</option>
 								{/foreach}
 							</select>
