@@ -96,7 +96,10 @@ class Settings_LayoutEditor_Index_View extends Settings_Vtiger_Index_View {
 		$test_groups  = array('group1' => 'UserGroup1',
                               'group2' => 'UserGroup2'
 	                    );
-
+        #get real user groups  & user_info.group
+        $groups = Settings_Groups_Record_Model::getAll();
+        echo "<pre>";print_r($groups);echo "</pre>";
+        die('done');
 		
 		$viewer = $this->getViewer($request);
 		$viewer->assign('TEST_GROUPS',$test_groups);

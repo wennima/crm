@@ -79,7 +79,7 @@
 									{foreach item=TEST_GROUP from=$TEST_GROUPS}
 									
 									<option value="{$TEST_GROUP}" >
-										$TEST_GROUP
+										{$TEST_GROUP}
 									</option>
 								{/foreach}
 								</select>
@@ -97,7 +97,7 @@
 									<option value='2'>Group2</option>-->
 									{foreach item=TEST_GROUP from=$TEST_GROUPS}
 									<option value="{$TEST_GROUP}" >
-										$TEST_GROUP
+										{$TEST_GROUP}
 									</option>
 								{/foreach}
 							</select>
