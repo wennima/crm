@@ -99,7 +99,7 @@ class Settings_LayoutEditor_Index_View extends Settings_Vtiger_Index_View {
 
 		
 		$viewer = $this->getViewer($request);
-		$viewer->assign('TESTS_GROUPS',$test_groups);
+		$viewer->assign('TEST_GROUPS',$test_groups);
 		$viewer->assign('CLEAN_FIELD_MODEL', $cleanFieldModel);
 		$viewer->assign('REQUEST_INSTANCE', $request);
 		$viewer->assign('SELECTED_MODULE_NAME', $sourceModule);
