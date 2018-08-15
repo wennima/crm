@@ -92,7 +92,14 @@ class Settings_LayoutEditor_Index_View extends Settings_Vtiger_Index_View {
 		$cleanFieldModel->setModule($moduleModel);
 
 		$qualifiedModule = $request->getModule(false);
+
+		$test_groups  = array('group1' => 'UserGroup1',
+                              'group2' => 'UserGroup2'
+	                    );
+
+		
 		$viewer = $this->getViewer($request);
+		$viewer->assign('TESTS_GROUPS',W$test_groups);
 		$viewer->assign('CLEAN_FIELD_MODEL', $cleanFieldModel);
 		$viewer->assign('REQUEST_INSTANCE', $request);
 		$viewer->assign('SELECTED_MODULE_NAME', $sourceModule);

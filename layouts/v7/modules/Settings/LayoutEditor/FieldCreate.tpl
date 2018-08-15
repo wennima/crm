@@ -73,9 +73,15 @@
 							</label>
 							<div class="controls col-sm-7">
 								<select class="blockList col-sm-9" name="groupid">
-									<option value='0'>No Group Limit</option>
+									<!--<option value='0'>No Group Limit</option>
 									<option value='1'>Group1</option>
-									<option value='2'>Group2</option>
+									<option value='2'>Group2</option>-->
+									{foreach item=TEST_GROUP from=$TEST_GROUPS}
+									
+									<option value="{$TEST_GROUP}" >
+										$TEST_GROUP
+									</option>
+								{/foreach}
 								</select>
 							</div>
 						</div> 
@@ -87,8 +93,13 @@
 						<div class="controls col-sm-7">
 							<select class="fieldTypesList col-sm-9" name="groupid" {if $IS_FIELD_EDIT_MODE} disabled="disabled"{/if}>
 								<option value='0'>No Group Limit</option>
-									<option value='1'>Group1</option>
-									<option value='2'>Group2</option>
+									<!--<option value='1'>Group1</option>
+									<option value='2'>Group2</option>-->
+									{foreach item=TEST_GROUP from=$TEST_GROUPS}
+									<option value="{$TEST_GROUP}" >
+										$TEST_GROUP
+									</option>
+								{/foreach}
 							</select>
 						</div>
 					</div>
