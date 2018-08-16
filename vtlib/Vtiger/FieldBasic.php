@@ -57,6 +57,7 @@ class Vtiger_FieldBasic {
 	function initialize($valuemap, $moduleInstance=false, $blockInstance=false) {
 	    $this->id = $valuemap['fieldid'];
 		$this->name = $valuemap['fieldname'];
+		$this->groupid = $valuemap['groupid'];
 		$this->label= $valuemap['fieldlabel'];
 		$this->column = $valuemap['columnname'];
 		$this->table  = $valuemap['tablename'];
@@ -190,6 +191,7 @@ class Vtiger_FieldBasic {
 			$log = LoggerManager::getLogger('SECURITY');
 			$log->debug('create');
 $log->debug($this->name);
+$log->debug($this->groupid);
 
 		$adb->pquery("INSERT INTO vtiger_field (tabid, fieldid, columnname, tablename, generatedtype,
 			uitype, fieldname, fieldlabel, readonly, presence, defaultvalue, maximumlength, sequence,
