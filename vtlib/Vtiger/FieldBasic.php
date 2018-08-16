@@ -56,7 +56,7 @@ class Vtiger_FieldBasic {
 	 */
 	function initialize($valuemap, $moduleInstance=false, $blockInstance=false) {
 		$log = LoggerManager::getLogger('SECURITY');
-$log->debug("abc");
+$log->debug($valuemap['fieldname']);
 		$this->id = $valuemap['fieldid'];
 		$this->name = $valuemap['fieldname'];
 		$this->label= $valuemap['fieldlabel'];
