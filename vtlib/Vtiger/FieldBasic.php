@@ -75,6 +75,7 @@ class Vtiger_FieldBasic {
 		$this->isunique = $valuemap['isunique'];
 		$this->block= $blockInstance? $blockInstance : Vtiger_Block::getInstance($valuemap['block'], $moduleInstance);
 		$this->headerfield = $valuemap['headerfield'];
+		$this->groupid = $valuemap['groupid']; # new column
 	}
 
 	/** Cache (Record) the schema changes to improve performance */
@@ -189,11 +190,11 @@ class Vtiger_FieldBasic {
 
 		$adb->pquery("INSERT INTO vtiger_field (tabid, fieldid, columnname, tablename, generatedtype,
 			uitype, fieldname, fieldlabel, readonly, presence, defaultvalue, maximumlength, sequence,
-			block, displaytype, typeofdata, quickcreate, quickcreatesequence, info_type, helpinfo,summaryfield,headerfield)
-			VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Array($this->getModuleId(), $this->id, $this->column, $this->table, intval($this->generatedtype),
+			block, displaytype, typeofdata, quickcreate, quickcreatesequence, info_type, helpinfo,summaryfield,headerfield,groupid)
+			VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Array($this->getModuleId(), $this->id, $this->column, $this->table, intval($this->generatedtype),
 			$this->uitype, $this->name, $this->label, $this->readonly, $this->presence, $this->defaultvalue,
 			$this->maximumlength, $this->sequence, $this->getBlockId(), $this->displaytype, $this->typeofdata,
-				intval($this->quickcreate), intval($this->quicksequence), $this->info_type, $this->helpinfo, intval($this->summaryfield), $this->headerfield));
+				intval($this->quickcreate), intval($this->quicksequence), $this->info_type, $this->helpinfo, intval($this->summaryfield), $this->headerfield,$this->groupid));
 
 		// Set the field status for mass-edit (if set)
 		$adb->pquery('UPDATE vtiger_field SET masseditable=? WHERE fieldid=?', Array($this->masseditable, $this->id));

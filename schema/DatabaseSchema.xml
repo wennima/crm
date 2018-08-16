@@ -325,6 +325,10 @@
 		</field>
 		<field name="quickcreatesequence" type="I" size="19" />
 		<field name="info_type" type="C" size="20" />
+		<field name="groupid" type="I" size="19">
+			<notnull />
+			<default value="0"/>
+		</field>
 		<field name="masseditable" type="I" size="10">
 			<notnull />
 			<default value="1" />

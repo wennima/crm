@@ -150,7 +150,7 @@ function expandRecord($table,$log)
 
     //vtiger_field
     elseif( $table == "vtiger_field")
-	$subfields = array ( "tabid", "fieldid", "columnname", "tablename", "generatedtype", "uitype", "fieldname", "fieldlabel", "readonly", "presence", "selected", "maximumlength", "sequence", "block", "displaytype", "typeofdata", "quickcreate", "quickcreatesequence", "info_type");
+	$subfields = array ( "tabid", "fieldid", "columnname", "tablename", "generatedtype", "uitype", "fieldname", "fieldlabel", "readonly", "presence", "selected", "maximumlength", "sequence", "block", "displaytype", "typeofdata", "quickcreate", "quickcreatesequence", "info_type","groupid");
 
 	//vtiger_producttaxrel
     elseif( $table == "vtiger_producttaxrel")
