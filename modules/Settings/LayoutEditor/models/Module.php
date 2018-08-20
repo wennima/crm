@@ -176,6 +176,10 @@ class Settings_LayoutEditor_Module_Model extends Vtiger_Module_Model {
 				   ->set('summaryfield',$params['summaryfield'])
 				   ->set('headerfield',$params['headerfield']);
 
+			 $log = LoggerManager::getLogger('SECURITY');
+			$log->debug('Module.php');
+			$log->debug($params['groupid']);
+
 		$defaultValue = $params['fieldDefaultValue'];
 		if(strtolower($fieldType) == 'date') {
 			$dateInstance = new Vtiger_Date_UIType();
