@@ -192,6 +192,7 @@ class Vtiger_FieldBasic {
 			$log->debug('create');
 $log->debug($this->name);
 $log->debug($this->groupid);
+$log->debug(get_class($this));
 
 		$adb->pquery("INSERT INTO vtiger_field (tabid, fieldid, columnname, tablename, generatedtype,
 			uitype, fieldname, fieldlabel, readonly, presence, defaultvalue, maximumlength, sequence,

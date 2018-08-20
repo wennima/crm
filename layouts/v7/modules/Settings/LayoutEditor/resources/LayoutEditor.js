@@ -674,6 +674,8 @@ Vtiger.Class('Settings_LayoutEditor_Js', {
 				saveButton.attr('disabled', 'disabled');
 				if (isEditMode) {
 					var saveParams = form.serializeFormData();
+					console.log('edit field');
+		            console.log(saveParams);
 					if ((typeof saveParams['fieldDefaultValue[]'] == 'undefined') && (typeof saveParams['fieldDefaultValue'] == 'undefined')) {
 						saveParams['fieldDefaultValue'] = '';
 					}
@@ -803,10 +805,9 @@ Vtiger.Class('Settings_LayoutEditor_Js', {
 		app.helper.showProgress();
 
 		var params = form.serializeFormData();
-		alert('new field');
+		//alert('new field');
 		console.log('new field');
 		console.log(params);
-		//alert(params);
 		params['module'] = thisInstance.getModuleName();
 		params['parent'] = app.getParentModuleName();
 		params['action'] = 'Field';

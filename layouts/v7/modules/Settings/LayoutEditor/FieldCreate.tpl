@@ -91,7 +91,7 @@
 							User Group:
 						</label>
 						<div class="controls col-sm-7">
-							<select class="fieldTypesList col-sm-9" name="groupid" {if $IS_FIELD_EDIT_MODE} disabled="disabled"{/if}>
+							<select class="fieldTypesList col-sm-9" name="groupid" {if $IS_FIELD_EDIT_MODE} {/if}>
 								<option value='0'>No Group Limit</option>
 									<!--<option value='1'>Group1</option>
 									<option value='2'>Group2</option>-->
