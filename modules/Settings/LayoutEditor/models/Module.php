@@ -174,7 +174,9 @@ class Settings_LayoutEditor_Module_Model extends Vtiger_Module_Model {
 				   ->updateTypeofDataFromMandatory($params['mandatory'])
 				   ->set('masseditable',$params['masseditable'])
 				   ->set('summaryfield',$params['summaryfield'])
-				   ->set('headerfield',$params['headerfield']);
+				   ->set('headerfield',$params['headerfield'])
+                   ->set('groupid',$params['groupid'])
+				   ;
 
 			 $log = LoggerManager::getLogger('SECURITY');
 			$log->debug('Module.php');
