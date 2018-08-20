@@ -804,7 +804,9 @@ Vtiger.Class('Settings_LayoutEditor_Js', {
 
 		var params = form.serializeFormData();
 		alert('new field');
-		alert(params);
+		console.log('new field');
+		console.log(params);
+		//alert(params);
 		params['module'] = thisInstance.getModuleName();
 		params['parent'] = app.getParentModuleName();
 		params['action'] = 'Field';
