@@ -803,6 +803,8 @@ Vtiger.Class('Settings_LayoutEditor_Js', {
 		app.helper.showProgress();
 
 		var params = form.serializeFormData();
+		alert('new field');
+		alert(params);
 		params['module'] = thisInstance.getModuleName();
 		params['parent'] = app.getParentModuleName();
 		params['action'] = 'Field';
