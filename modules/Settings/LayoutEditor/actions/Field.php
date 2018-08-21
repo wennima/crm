@@ -68,6 +68,9 @@ class Settings_LayoutEditor_Field_Action extends Settings_Vtiger_Index_Action {
         $massEditable = $request->get('masseditable',null);
         $headerField = $request->get('headerfield',null);
 
+        $log = LoggerManager::getLogger('SECURITY');
+        $log->debug('action/field.php');
+
 		if (!$fieldLabel) {
 			$fieldInstance->set('label', $fieldLabel);
 		}
