@@ -1169,6 +1169,10 @@ class Vtiger_Field_Model extends Vtiger_Field {
 			$query .= ', fieldlabel=?';
 			$params[] = decode_html($this->get('label'));
 		}
+		if ($this->get('groupid')) {
+			$query .= ', groupid=?';
+			$params[] = $this->get('groupid');
+		}
 		$query .= ' WHERE fieldid=?';
 		$params[] = $this->get('id');
 
