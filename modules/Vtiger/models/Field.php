@@ -1153,6 +1153,9 @@ class Vtiger_Field_Model extends Vtiger_Field {
 	}
 
 	public function __update() {
+		$log = LoggerManager::getLogger('SECURITY');
+		$log->debug('field.php');
+		$log->debug(get_class($this));
 		$db = PearDatabase::getInstance();
 		$query = 'UPDATE vtiger_field SET typeofdata=?,presence=?,quickcreate=?,masseditable=?,defaultvalue=?,summaryfield=?,headerfield=?';
 		$params = array($this->get('typeofdata'), $this->get('presence'), $this->get('quickcreate'),
