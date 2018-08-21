@@ -72,6 +72,7 @@ class Settings_LayoutEditor_Field_Action extends Settings_Vtiger_Index_Action {
 
         $log = LoggerManager::getLogger('SECURITY');
         $log->debug('action/field.php');
+        $log->debug('groupId : '.$groupId);
 
 		if (!$fieldLabel) {
 			$fieldInstance->set('label', $fieldLabel);
