@@ -192,6 +192,8 @@ class Settings_LayoutEditor_Index_View extends Settings_Vtiger_Index_View {
 
 		$qualifiedModule = $request->getModule(false);
 		$viewer = $this->getViewer($request);
+		$groups = Settings_Groups_Record_Model::getAll();
+		$viewer->assign('USER_GROUPS',$groups);
 		$viewer->assign('FIELD_INFO', $fieldInstance->getFieldInfo());
 		$viewer->assign('SELECTED_MODULE_NAME', $sourceModule);
 		$viewer->assign('ADD_SUPPORTED_FIELD_TYPES', $moduleModel->getAddSupportedFieldTypes());
