@@ -96,7 +96,7 @@
 									<!--<option value='1'>Group1</option>
 									<option value='2'>Group2</option>-->
 									{foreach item=USER_GROUP from=$USER_GROUPS}
-									<option value="{$USER_GROUP->getId()}" >
+									<option value="{$USER_GROUP->getId()}" {if $USER_GROUP->getId() eq $FIELD_MODEL->get('groupid')}  selected='selected'{/if}>
 										{$USER_GROUP->getName()}
 									</option>
 								{/foreach}
@@ -107,7 +107,7 @@
 					<div class="form-group">
 						<label class="control-label fieldLabel col-sm-5">
 							{vtranslate('LBL_LABEL_NAME', $QUALIFIED_MODULE)}
-							&nbsp;<span class="redColor">*</span><span>test:{$FIELD_MODEL->get('groupid')}</span>
+							&nbsp;<span class="redColor">*</span>
 						</label>
 						<div class="controls col-sm-7">
 
