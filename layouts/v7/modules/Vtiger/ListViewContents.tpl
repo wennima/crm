@@ -51,6 +51,7 @@
 
 	<div id="table-content" class="table-container">
 		<form name='list' id='listedit' action='' onsubmit="return false;">
+			<span>test tpl</span>
 			<table id="listview-table" class="table {if $LISTVIEW_ENTRIES_COUNT eq '0'}listview-table-norecords {/if} listview-table ">
 				<thead>
 					<tr class="listViewContentHeader">
