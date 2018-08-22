@@ -107,9 +107,10 @@
 					<div class="form-group">
 						<label class="control-label fieldLabel col-sm-5">
 							{vtranslate('LBL_LABEL_NAME', $QUALIFIED_MODULE)}
-							&nbsp;<span class="redColor">*</span>
+							&nbsp;<span class="redColor">*</span><span>test:{$FIELD_MODEL->get('groupid')}</span>
 						</label>
 						<div class="controls col-sm-7">
+
 							<input type="text" class='inputElement col-sm-9' maxlength="50" {if $IS_FIELD_EDIT_MODE}disabled="disabled"{/if} name="fieldLabel" value="{vtranslate($FIELD_MODEL->get('label'), $SELECTED_MODULE_NAME)}" data-rule-required='true' style='width: 75%' />
 						</div>
 					</div>
