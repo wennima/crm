@@ -171,7 +171,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 				$fieldInstance = Vtiger_Field_Model::getInstance($fieldName,$module);
 				$fieldInstance->set('listViewRawFieldName', $fieldInstance->get('column'));
 
-				$log->debug('2 : '.$fieldName.' ->'.$fieldInstance->get('label'.'->'.$fieldInstance->get('groupid'));
+				$log->debug('2 : '.$fieldName.' .Label: ->'.$fieldInstance->get('label').'.groupid: ->'.$fieldInstance->get('groupid'));
 				$headerFieldModels[$fieldName] = $fieldInstance;
 			}
 		}
