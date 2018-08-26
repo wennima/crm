@@ -142,7 +142,9 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 		$module = $this->getModule();
 		$headerFieldModels = array();
 		$headerFields = $listViewContoller->getListViewHeaderFields();
+		$log = LoggerManager::getLogger('SECURITY');
 		foreach($headerFields as $fieldName => $webserviceField) {
+			$log->debug('1 : '.$fieldName);
 			if($webserviceField && !in_array($webserviceField->getPresence(), array(0,2))) continue;
 			if($webserviceField && $webserviceField->parentReferenceField && !in_array($webserviceField->parentReferenceField->getPresence(), array(0,2))){
 				continue;
@@ -166,6 +168,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 				$headerFieldModels[$fieldName] = $referenceFieldModel->set('name', $fieldName); // resetting the fieldname as we use it to fetch the value from that name
 				$matches=null;
 			} else {
+				$log->debug('2 : '.$fieldName);
 				$fieldInstance = Vtiger_Field_Model::getInstance($fieldName,$module);
 				$fieldInstance->set('listViewRawFieldName', $fieldInstance->get('column'));
 				$headerFieldModels[$fieldName] = $fieldInstance;
