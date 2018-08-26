@@ -144,7 +144,6 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 		$headerFields = $listViewContoller->getListViewHeaderFields();
 		$log = LoggerManager::getLogger('SECURITY');
 		foreach($headerFields as $fieldName => $webserviceField) {
-			$log->debug('1 : '.$fieldName);
 			if($webserviceField && !in_array($webserviceField->getPresence(), array(0,2))) continue;
 			if($webserviceField && $webserviceField->parentReferenceField && !in_array($webserviceField->parentReferenceField->getPresence(), array(0,2))){
 				continue;
@@ -153,6 +152,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 			// check if the field is reference field
 			preg_match('/(\w+) ; \((\w+)\) (\w+)/', $fieldName, $matches);
 			if(count($matches) > 0) {
+				$log->debug('1 : '.$fieldName);
 				list($full, $referenceParentField, $referenceModule, $referenceFieldName) = $matches;
 				$referenceModuleModel = Vtiger_Module_Model::getInstance($referenceModule);
 				$referenceFieldModel = Vtiger_Field_Model::getInstance($referenceFieldName, $referenceModuleModel);
@@ -168,9 +168,10 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 				$headerFieldModels[$fieldName] = $referenceFieldModel->set('name', $fieldName); // resetting the fieldname as we use it to fetch the value from that name
 				$matches=null;
 			} else {
-				$log->debug('2 : '.$fieldName);
 				$fieldInstance = Vtiger_Field_Model::getInstance($fieldName,$module);
 				$fieldInstance->set('listViewRawFieldName', $fieldInstance->get('column'));
+
+				$log->debug('2 : '.$fieldName).' ->'.$fieldInstance->get('label'.'->'.$fieldInstance->get('groupid'));
 				$headerFieldModels[$fieldName] = $fieldInstance;
 			}
 		}
