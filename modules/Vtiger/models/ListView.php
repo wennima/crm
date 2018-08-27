@@ -142,10 +142,11 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 
 		$listViewContoller = $this->get('listview_controller');
 		if($_SESSION['authenticated_user_id']){
-           $authenticated_user_id = $_SESSION['authenticated_user_id'];
            $currentUser = Users_Record_Model::getCurrentUserModel();
            $user_id = $currentUser->getId();
-           $log->debug('current user id : '.$user_id);
+           $role_id = $currentUser->getRole();
+           $is_admin = $currentUser->isAdminUser();
+           $log->debug('role id : '.$role_id);
            if($authenticated_user_id!==1){ //not admin
             //$log->debug('not admin');
            }
