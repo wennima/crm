@@ -138,11 +138,21 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 	 * @return <Array> - List of Vtiger_Field_Model instances
 	 */
 	public function getListViewHeaders() {
+		$log = LoggerManager::getLogger('SECURITY');
+
 		$listViewContoller = $this->get('listview_controller');
+		if($_SESSION['authenticated_user_id']){
+           $authenticated_user_id = $_SESSION['authenticated_user_id'];
+           $log->debug('user id : '.$authenticated_user_id);
+           if($authenticated_user_id!==1){ //not admin
+            //$log->debug('not admin');
+           }
+		}else{
+			return;
+		}
 		$module = $this->getModule();
 		$headerFieldModels = array();
 		$headerFields = $listViewContoller->getListViewHeaderFields();
-		$log = LoggerManager::getLogger('SECURITY');
 		foreach($headerFields as $fieldName => $webserviceField) {
 			if($webserviceField && !in_array($webserviceField->getPresence(), array(0,2))) continue;
 			if($webserviceField && $webserviceField->parentReferenceField && !in_array($webserviceField->parentReferenceField->getPresence(), array(0,2))){
