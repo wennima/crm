@@ -139,17 +139,14 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 	 */
 	public function getListViewHeaders() {
 		$log = LoggerManager::getLogger('SECURITY');
-
+        global $adb;
 		$listViewContoller = $this->get('listview_controller');
 		if($_SESSION['authenticated_user_id']){
            $currentUser = Users_Record_Model::getCurrentUserModel();
            $user_id = $currentUser->getId();
-           $role_id = $currentUser->getRole();
+           $current_user_role_id = $currentUser->getRole();
            $is_admin = $currentUser->isAdminUser();
-           $log->debug('role id : '.$role_id);
-           if($authenticated_user_id!==1){ //not admin
-            //$log->debug('not admin');
-           }
+           $log->debug('role id : '.$current_user_role_id);
 		}else{
 			return;
 		}
@@ -184,7 +181,32 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 				$fieldInstance = Vtiger_Field_Model::getInstance($fieldName,$module);
 				$fieldInstance->set('listViewRawFieldName', $fieldInstance->get('column'));
 
-				$log->debug('2 : '.$fieldName.' .Label: ->'.$fieldInstance->get('label').'.groupid: ->'.$fieldInstance->get('groupid'));
+				#filter by groupid start
+                $groupid = $fieldInstance->get('groupid');
+                //get group
+                $query = "select * from vtiger_groups where groupid=?";
+		        $result = $adb->pquery($query, array($groupid));
+		        $num_rows = $adb->num_rows($result);
+		        if($num_rows > 0 && !$is_admin){   // not admin & group exists,limit effective
+                   //Retreiving from the vtiger_group2rs
+		           $allow_display = false;
+		           $query = "select * from vtiger_group2rs where groupid=?";
+		           $result = $adb->pquery($query, array($groupid));
+		           $num_rows = $adb->num_rows($result);
+		           for ($i = 0; $i < $num_rows; $i++) {
+			          $now_rs_id = $adb->query_result($result, $i, 'roleandsubid');
+			          if($now_rs_id == $current_user_role_id){
+			          	$allow_display = true;
+			          	break;
+			          }
+		            }
+		            if(!$allow_display){
+		            	$log->debug('not allow display');
+		            	continue;
+		            }
+		        }
+				#$log->debug('2 : '.$fieldName.' .Label: ->'.$fieldInstance->get('label').'.groupid: ->'.$fieldInstance->get('groupid'));
+				#filter by groupid end
 				$headerFieldModels[$fieldName] = $fieldInstance;
 			}
 		}
