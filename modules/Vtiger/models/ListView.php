@@ -138,7 +138,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 	 * @return <Array> - List of Vtiger_Field_Model instances
 	 */
 	public function getListViewHeaders() {
-		$log = LoggerManager::getLogger('SECURITY');
+		#$log = LoggerManager::getLogger('SECURITY');
         global $adb;
 		$listViewContoller = $this->get('listview_controller');
 		if($_SESSION['authenticated_user_id']){
@@ -146,7 +146,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
            $user_id = $currentUser->getId();
            $current_user_role_id = $currentUser->getRole();
            $is_admin = $currentUser->isAdminUser();
-           $log->debug('role id : '.$current_user_role_id);
+           #$log->debug('role id : '.$current_user_role_id);
 		}else{
 			return;
 		}
@@ -162,7 +162,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 			// check if the field is reference field
 			preg_match('/(\w+) ; \((\w+)\) (\w+)/', $fieldName, $matches);
 			if(count($matches) > 0) {
-				$log->debug('1 : '.$fieldName);
+				#$log->debug('1 : '.$fieldName);
 				list($full, $referenceParentField, $referenceModule, $referenceFieldName) = $matches;
 				$referenceModuleModel = Vtiger_Module_Model::getInstance($referenceModule);
 				$referenceFieldModel = Vtiger_Field_Model::getInstance($referenceFieldName, $referenceModuleModel);
@@ -201,7 +201,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 			          }
 		            }
 		            if(!$allow_display){
-		            	$log->debug('not allow display');
+		            	#$log->debug('not allow display');
 		            	continue;
 		            }
 		        }

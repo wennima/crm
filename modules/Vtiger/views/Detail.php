@@ -272,7 +272,8 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 	function showModuleDetailView(Vtiger_Request $request) {
 		$recordId = $request->get('record');
 		$moduleName = $request->getModule();
-
+        $log = LoggerManager::getLogger('SECURITY');
+        $log->debug('detail1');
 		if(!$this->record){
 		$this->record = Vtiger_DetailView_Model::getInstance($moduleName, $recordId);
 		}
