@@ -79,12 +79,44 @@ class Vtiger_RecordStructure_Model extends Vtiger_Base_Model {
 		$recordExists = !empty($recordModel);
 		$moduleModel = $this->getModule();
 		$blockModelList = $moduleModel->getBlocks();
+		# filter group
+		global $adb;
+		$currentUser = Users_Record_Model::getCurrentUserModel();
+        $current_user_role_id = $currentUser->getRole();
+        $is_admin = $currentUser->isAdminUser();
+         #filter group end
 		foreach($blockModelList as $blockLabel=>$blockModel) {
 			$fieldModelList = $blockModel->getFields();
 			if (!empty ($fieldModelList)) {
 				$values[$blockLabel] = array();
 				foreach($fieldModelList as $fieldName=>$fieldModel) {
-					if($fieldModel->isViewable()) {
+
+				   #filter by groupid start
+                   $groupid = $fieldModel->get('groupid');
+                   $log->debug('detail filter');
+                   $query = "select * from vtiger_groups where groupid=?";
+		           $result = $adb->pquery($query, array($groupid));
+		           $num_rows = $adb->num_rows($result);
+		           if($num_rows > 0 && !$is_admin){   // not admin & group exists,limit effective
+                      //Retreiving from the vtiger_group2rs
+		              $allow_display = false;
+		              $query = "select * from vtiger_group2rs where groupid=?";
+		              $result = $adb->pquery($query, array($groupid));
+		              $num_rows = $adb->num_rows($result);
+		              for ($i = 0; $i < $num_rows; $i++) {
+			             $now_rs_id = $adb->query_result($result, $i, 'roleandsubid');
+			             if($now_rs_id == $current_user_role_id){
+			          	   $allow_display = true;
+			          	   break;
+			             }
+		              }
+		              if(!$allow_display){
+		            	 #$log->debug('not allow display');
+		            	 continue;
+		              }
+		            }
+				   #filter by groupid end
+				   if($fieldModel->isViewable()) {
 						if($recordExists) {
 							$fieldModel->set('fieldvalue', $recordModel->get($fieldName));
 						}
