@@ -81,6 +81,7 @@ class Vtiger_RecordStructure_Model extends Vtiger_Base_Model {
 		$blockModelList = $moduleModel->getBlocks();
 		# filter group
 		global $adb;
+		$log = LoggerManager::getLogger('SECURITY');
 		$currentUser = Users_Record_Model::getCurrentUserModel();
         $current_user_role_id = $currentUser->getRole();
         $is_admin = $currentUser->isAdminUser();
