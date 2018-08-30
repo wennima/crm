@@ -70,6 +70,8 @@ class Vtiger_RecordStructure_Model extends Vtiger_Base_Model {
 	 * @return <array> - values in structure array('block'=>array(fieldinfo));
 	 */
 	public function getStructure() {
+		$log = LoggerManager::getLogger('SECURITY');
+		 $log->debug('detail filter111');
 		if(!empty($this->structuredValues)) {
 			return $this->structuredValues;
 		}
@@ -81,7 +83,7 @@ class Vtiger_RecordStructure_Model extends Vtiger_Base_Model {
 		$blockModelList = $moduleModel->getBlocks();
 		# filter group
 		global $adb;
-		$log = LoggerManager::getLogger('SECURITY');
+
 		$currentUser = Users_Record_Model::getCurrentUserModel();
         $current_user_role_id = $currentUser->getRole();
         $is_admin = $currentUser->isAdminUser();
