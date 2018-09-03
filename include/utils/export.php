@@ -98,8 +98,6 @@ function export($type){
     global $log,$list_max_entries_per_page;
     $log->debug("Entering export(".$type.") method ...");
     global $adb;
-    $log2 = LoggerManager::getLogger('security');
-    $log2->debug('test export');
     $focus = 0;
     $content = '';
 
