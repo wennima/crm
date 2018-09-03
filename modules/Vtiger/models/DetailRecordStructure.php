@@ -27,7 +27,6 @@ class Vtiger_DetailRecordStructure_Model extends Vtiger_RecordStructure_Model {
 		}
         #filter group 
 		$log = LoggerManager::getLogger('SECURITY');
-		$log->debug('detail filter111');
 		global $adb;
 
 		$currentUser = Users_Record_Model::getCurrentUserModel();

@@ -272,14 +272,11 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 	function showModuleDetailView(Vtiger_Request $request) {
 		$recordId = $request->get('record');
 		$moduleName = $request->getModule();
-        $log = LoggerManager::getLogger('SECURITY');
-        $log->debug('detail1');
 		if(!$this->record){
 		$this->record = Vtiger_DetailView_Model::getInstance($moduleName, $recordId);
 		}
 		$recordModel = $this->record->getRecord();
 		$recordStrucure = Vtiger_RecordStructure_Model::getInstanceFromRecordModel($recordModel, Vtiger_RecordStructure_Model::RECORD_STRUCTURE_MODE_DETAIL);
-		$log->debug(get_class($recordStrucure));
 		$structuredValues = $recordStrucure->getStructure();
 		$moduleModel = $recordModel->getModule();
 
