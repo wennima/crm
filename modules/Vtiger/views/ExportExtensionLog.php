@@ -124,6 +124,8 @@ class Vtiger_ExportExtensionLog_View extends Vtiger_View_Controller {
 	function writeToCSVFile($fileName, $data) {
 		$arr_val = $data;
 
+    $log2 = LoggerManager::getLogger('security');
+    $log2->debug('test export2');
 		$fp = fopen($fileName, 'w+');
 
 		if (isset($arr_val)) {
