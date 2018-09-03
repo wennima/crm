@@ -489,10 +489,6 @@ class SalesOrder extends CRMEntity {
 		global $current_user;
 		$log->debug("Entering create_export_query(".$where.") method ...");
 
-		
-    $log2 = LoggerManager::getLogger('security');
-    $log2->debug('test export');
-
 		include("include/utils/ExportUtils.php");
 
 		//To get the Permitted fields query and the permitted fields list
