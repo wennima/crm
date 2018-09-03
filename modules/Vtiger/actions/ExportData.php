@@ -154,8 +154,39 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 		}
 
 		$accessiblePresenceValue = array(0,2);
+		#filter groupid ??
+        global $adb;
+        $currentUser = Users_Record_Model::getCurrentUserModel();
+        $current_user_role_id = $currentUser->getRole();
+        $is_admin = $currentUser->isAdminUser();
+	    #filter groupid end
 		foreach($fieldInstances as $field) {
 			// Check added as querygenerator is not checking this for admin users
+			#filter by groupid start
+                   $groupid = $field->get('groupid');
+		           if($groupid > 0){
+		           	   $query = "select * from vtiger_groups where groupid=?";
+		               $result = $adb->pquery($query, array($groupid));
+		               $num_rows = $adb->num_rows($result);
+		              if($num_rows > 0 && !$is_admin){   // not admin & group exists,limit effective
+                        //Retreiving from the vtiger_group2rs
+		                $allow_display = false;
+		                $query = "select * from vtiger_group2rs where groupid=?";
+		                $result = $adb->pquery($query, array($groupid));
+		                $num_rows = $adb->num_rows($result);
+		                for ($i = 0; $i < $num_rows; $i++) {
+			               $now_rs_id = $adb->query_result($result, $i, 'roleandsubid');
+			               if($now_rs_id == $current_user_role_id){
+			          	     $allow_display = true;
+			          	     break;
+			               }
+		                }
+		                if(!$allow_display){
+		            	   continue;
+		                }
+		              }
+		          }
+				   #filter by groupid end
 			$presence = $field->get('presence');
 			if(in_array($presence, $accessiblePresenceValue) && $field->get('displaytype') != '6') {
 				$fields[] = $field->getName();

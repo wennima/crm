@@ -26,7 +26,7 @@ class Vtiger_DetailRecordStructure_Model extends Vtiger_RecordStructure_Model {
 			return $this->structuredValues;
 		}
         #filter group 
-		$log = LoggerManager::getLogger('SECURITY');
+		#$log = LoggerManager::getLogger('SECURITY');
 		global $adb;
 
 		$currentUser = Users_Record_Model::getCurrentUserModel();
