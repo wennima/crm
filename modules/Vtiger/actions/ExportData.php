@@ -38,8 +38,6 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 	function ExportData(Vtiger_Request $request) {
 		$db = PearDatabase::getInstance();
 		$moduleName = $request->get('source_module');
-		$log = LoggerManager::getLogger('SECURITY');
-		$log->debug('export233');
 
 		$this->moduleInstance = Vtiger_Module_Model::getInstance($moduleName);
 		$this->moduleFieldInstances = $this->moduleFieldInstances($moduleName);
