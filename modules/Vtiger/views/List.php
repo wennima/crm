@@ -93,8 +93,7 @@ class Vtiger_List_View extends Vtiger_Index_View {
 	function process (Vtiger_Request $request) {
 		$viewer = $this->getViewer ($request);
 		$moduleName = $request->getModule();
-		$log = LoggerManager::getLogger('SECURITY');
-		$log->debug('moduleName0 : '.$moduleName);
+
 		$moduleModel = Vtiger_Module_Model::getInstance($moduleName);
 		$viewName = $request->get('viewname');
 		if(!empty($viewName)) {
@@ -155,6 +154,8 @@ class Vtiger_List_View extends Vtiger_Index_View {
 	 */
 	public function initializeListViewContents(Vtiger_Request $request, Vtiger_Viewer $viewer) {
 		$moduleName = $request->getModule();
+		$log = LoggerManager::getLogger('SECURITY');
+		$log->debug('moduleName0 : '.$moduleName);
 		$cvId = $this->viewName;
 		$pageNumber = $request->get('page');
 		$orderBy = $request->get('orderby');
