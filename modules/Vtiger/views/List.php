@@ -366,8 +366,14 @@ class Vtiger_List_View extends Vtiger_Index_View {
 			$this->allUserTags = Vtiger_Tag_Model::getAllUserTags($currentUser->getId());
 		}
 
+
 		$listViewController = $listViewModel->get('listview_controller');
 		$selectedHeaderFields = $listViewController->getListViewHeaderFields();
+
+        if($moduleName =='SalesOrder'){
+			$_SESSION['order_list_headers'] = $this->listViewHeaders;
+			$_SESSION['order_list_entries'] = $this->listViewEntries;
+		}
 
 		$viewer->assign('ORDER_BY',$orderBy);
 		$viewer->assign('SORT_ORDER',$sortOrder);

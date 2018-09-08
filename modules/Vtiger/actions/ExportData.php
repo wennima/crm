@@ -38,66 +38,24 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 	function ExportData(Vtiger_Request $request) {
 		$db = PearDatabase::getInstance();
 		$moduleName = $request->get('source_module');
+		
+#new export for order
 		$log = LoggerManager::getLogger('SECURITY');
-		$log->debug('moduleName1 : '.$moduleName);
-
+		if($moduleName == 'SalesOrder'){
+			if($_SESSION['order_list_headers'] && $_SESSION['order_list_entries']){
+                  $headers = $_SESSION['order_list_headers'];
+                  $entries = $_SESSION['order_list_entries'];
+                  $this->output2($request,$headers,$entries);
+                  return;
+			}
+		}
+#new export for order end
 		$this->moduleInstance = Vtiger_Module_Model::getInstance($moduleName);
 		$this->moduleFieldInstances = $this->moduleFieldInstances($moduleName);
 		$this->focus = CRMEntity::getInstance($moduleName);
 
 		$query = $this->getExportQuery($request);
 		$result = $db->pquery($query, array());
-
-		$translatedHeaders = $this->getHeaders();
-		$entries = array();
-		for ($j = 0; $j < $db->num_rows($result); $j++) {
-			$entries[] = $this->sanitizeValues($db->fetchByAssoc($result, $j));
-		}
-
-		$this->output($request, $translatedHeaders, $entries);
-	}
-
-	/**
-	 * export Order List Data
-	 * @param Vtiger_Request $request
-	 */
-	function ExportData2(Vtiger_Request $request) {
-		$db = PearDatabase::getInstance();
-		$moduleName = $request->get('source_module');
-
-        #new export
-        $mode = $request->getMode();
-        $orderBy = $request->get('orderby');
-        $qualifiedModuleName = $request->getModule(false);
-        $sourceModule = $moduleName;
-        $searchKey = '';
-        $searchValue = '';
-        if ($mode !== 'ExportAllData') {
-        	$searchKey = $request->get('search_key');
-		    $searchValue = $request->get('search_value');
-        }
-		
-		$nextSortOrder = "DESC";
-	    $sortImage = "icon-chevron-down";
-
-	    $listViewModel = Settings_Vtiger_ListView_Model::getInstance($qualifiedModuleName);
-
-	    if(!empty($searchKey) && !empty($searchValue)) {
-			$listViewModel->set('search_key', $searchKey);
-			$listViewModel->set('search_value', $searchValue);
-		}
-
-		if(!empty($orderBy)) {
-			$listViewModel->set('orderby', $orderBy);
-			$listViewModel->set('sortorder',$sortOrder);
-		}
-		if(!empty($sourceModule)) {
-			$listViewModel->set('sourceModule', $sourceModule);
-		}
-
-        $headers = $listViewModel->getListViewHeaders();
-
-        #new export end
 
 		$translatedHeaders = $this->getHeaders();
 		$entries = array();
@@ -346,6 +304,59 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 			$line .= "\"\r\n";
 			echo $line;
 		}
+	}
+
+	/**
+	 * Function that create the exported file
+	 * @param Vtiger_Request $request
+	 * @param <Array> $headers - output file header
+	 * @param <Array> $entries - outfput file data
+	 */
+	function output2($request, $headers, $entries) {
+		$moduleName = $request->get('source_module');
+		$fileName = str_replace(' ','_',decode_html(vtranslate($moduleName, $moduleName)));
+		// for content disposition header comma should not be there in filename 
+		$fileName = str_replace(',', '_', $fileName);
+		$exportType = $this->getExportContentType($request);
+
+		header("Content-Disposition:attachment;filename=$fileName.csv");
+		header("Content-Type:$exportType;charset=UTF-8");
+		header("Expires: Mon, 31 Dec 2000 00:00:00 GMT" );
+		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT" );
+		header("Cache-Control: post-check=0, pre-check=0", false );
+
+        $new_headers  = array();
+		foreach ($headers as $header) {
+			$new_headers[]= $header->getName();
+		}
+
+		$header = implode("\", \"", $new_headers);
+		$header = "\"" .$header;
+		$header .= "\"\r\n";
+		echo $header;
+
+		foreach ($entries as $entry) {
+			# get value format ??? -->tpl
+			$line_values = array();
+            foreach ($headers as $header) {
+            	$header_name = $header->get('name');
+            	$line_values[] = $entry->get($header_name);
+            }
+            $line = implode("\",\"",$line_values);
+			$line = "\"" .$line;
+			$line .= "\"\r\n";
+		}
+
+		/*foreach($entries as $row) {
+			foreach ($row as $key => $value) {
+				
+				$row[$key] = str_replace('"', '""', $value);
+			}
+			$line = implode("\",\"",$row);
+			$line = "\"" .$line;
+			$line .= "\"\r\n";
+			echo $line;
+		}*/
 	}
 
 	private $picklistValues;
