@@ -98,6 +98,8 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 		$cvId = $request->get('viewname');
 		$moduleName = $request->get('source_module');
 
+        $log = LoggerManager::getLogger('SECURITY');
+
 		$queryGenerator = new EnhancedQueryGenerator($moduleName, $currentUser);
 		$queryGenerator->initForCustomViewById($cvId);
 		$fieldInstances = $this->moduleFieldInstances;
@@ -192,6 +194,7 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 		}
 		$queryGenerator->setFields($fields);
 		$query = $queryGenerator->getQuery();
+		$log->debug('query1 : '.$query);
 
 		$additionalModules = $this->getAdditionalQueryModules();
 		if(in_array($moduleName, $additionalModules)) {
@@ -242,8 +245,8 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 			default :	break;
 		}
 		#log query
-		$log = LoggerManager::getLogger('SECURITY');
-		$log->debug('query : '.$query);
+		
+		$log->debug('query2 : '.$query);
 		return $query;
 	}
 
