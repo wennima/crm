@@ -241,6 +241,9 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 
 			default :	break;
 		}
+		#log query
+		$log = LoggerManager::getLogger('SECURITY');
+		$log->debug('query : '.$query);
 		return $query;
 	}
 
