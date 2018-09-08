@@ -38,6 +38,8 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 	function ExportData(Vtiger_Request $request) {
 		$db = PearDatabase::getInstance();
 		$moduleName = $request->get('source_module');
+		$log = LoggerManager::getLogger('SECURITY');
+		$log->debug('moduleName1 : '.$moduleName);
 
 		$this->moduleInstance = Vtiger_Module_Model::getInstance($moduleName);
 		$this->moduleFieldInstances = $this->moduleFieldInstances($moduleName);
@@ -45,6 +47,57 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 
 		$query = $this->getExportQuery($request);
 		$result = $db->pquery($query, array());
+
+		$translatedHeaders = $this->getHeaders();
+		$entries = array();
+		for ($j = 0; $j < $db->num_rows($result); $j++) {
+			$entries[] = $this->sanitizeValues($db->fetchByAssoc($result, $j));
+		}
+
+		$this->output($request, $translatedHeaders, $entries);
+	}
+
+	/**
+	 * export Order List Data
+	 * @param Vtiger_Request $request
+	 */
+	function ExportData2(Vtiger_Request $request) {
+		$db = PearDatabase::getInstance();
+		$moduleName = $request->get('source_module');
+
+        #new export
+        $mode = $request->getMode();
+        $orderBy = $request->get('orderby');
+        $qualifiedModuleName = $request->getModule(false);
+        $sourceModule = $moduleName;
+        $searchKey = '';
+        $searchValue = '';
+        if ($mode !== 'ExportAllData') {
+        	$searchKey = $request->get('search_key');
+		    $searchValue = $request->get('search_value');
+        }
+		
+		$nextSortOrder = "DESC";
+	    $sortImage = "icon-chevron-down";
+
+	    $listViewModel = Settings_Vtiger_ListView_Model::getInstance($qualifiedModuleName);
+
+	    if(!empty($searchKey) && !empty($searchValue)) {
+			$listViewModel->set('search_key', $searchKey);
+			$listViewModel->set('search_value', $searchValue);
+		}
+
+		if(!empty($orderBy)) {
+			$listViewModel->set('orderby', $orderBy);
+			$listViewModel->set('sortorder',$sortOrder);
+		}
+		if(!empty($sourceModule)) {
+			$listViewModel->set('sourceModule', $sourceModule);
+		}
+
+        $headers = $listViewModel->getListViewHeaders();
+
+        #new export end
 
 		$translatedHeaders = $this->getHeaders();
 		$entries = array();
@@ -97,8 +150,6 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 		$mode = $request->getMode();
 		$cvId = $request->get('viewname');
 		$moduleName = $request->get('source_module');
-
-        $log = LoggerManager::getLogger('SECURITY');
 
 		$queryGenerator = new EnhancedQueryGenerator($moduleName, $currentUser);
 		$queryGenerator->initForCustomViewById($cvId);
@@ -194,7 +245,6 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 		}
 		$queryGenerator->setFields($fields);
 		$query = $queryGenerator->getQuery();
-		$log->debug('query1 : '.$query);
 
 		$additionalModules = $this->getAdditionalQueryModules();
 		if(in_array($moduleName, $additionalModules)) {
@@ -244,9 +294,7 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 
 			default :	break;
 		}
-		#log query
 		
-		$log->debug('query2 : '.$query);
 		return $query;
 	}
 

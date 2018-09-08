@@ -44,6 +44,10 @@ class Settings_Vtiger_List_View extends Settings_Vtiger_Index_View {
 		$sourceModule = $request->get('sourceModule');
 		$forModule = $request->get('formodule');
 		
+$log = LoggerManager::getLogger('SECURITY');
+		$log->debug('moduleName0 : '.$moduleName);
+
+
 		$searchKey = $request->get('search_key');
 		$searchValue = $request->get('search_value');
 		
