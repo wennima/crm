@@ -327,7 +327,7 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 
         $new_headers  = array();
 		foreach ($headers as $header) {
-			$new_headers[]= $header->getName();
+			$new_headers[]= $header->get('label');
 		}
 
 		$header = implode("\", \"", $new_headers);
