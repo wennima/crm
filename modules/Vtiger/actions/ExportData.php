@@ -343,9 +343,17 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
             	$header_name = $header->get('name');
             	$log->debug('header name : '.$header_name);
             	$value =  $entry->get($header_name);
-            	$log->debug('value : '.$value);
+            	
+            	if(strpos($value,'</a>') === false){
+                    $line_values[] = $value;
+            	}else{
+                   $str = htmlspecialchars_decode($value);
+                   $str = preg_replace("/<a[^>]*>(.*?)<\/a>/is", "$1", $str);
+                   $log->debug('value : '.$str);
+                   $line_values[] = $str;
+            	}
             	$log->debug('**************************');
-            	$line_values[] = $value;
+            	
             }
             $line = implode("\",\"",$line_values);
 			$line = "\"" .$line;
