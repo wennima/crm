@@ -314,6 +314,7 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 	 */
 	function output2($request, $headers, $entries) {
 		$moduleName = $request->get('source_module');
+		$log = LoggerManager::getLogger('SECURITY');
 		$fileName = str_replace(' ','_',decode_html(vtranslate($moduleName, $moduleName)));
 		// for content disposition header comma should not be there in filename 
 		$fileName = str_replace(',', '_', $fileName);
@@ -340,7 +341,11 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 			$line_values = array();
             foreach ($headers as $header) {
             	$header_name = $header->get('name');
-            	$line_values[] = $entry->get($header_name);
+            	$log->debug('header name : '.$header_name);
+            	$value =  $entry->get($header_name);
+            	$log->debug('value : '.$value);
+            	$log->debug('**************************');
+            	$line_values[] = $value;
             }
             $line = implode("\",\"",$line_values);
 			$line = "\"" .$line;
