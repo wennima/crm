@@ -358,6 +358,7 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
             $line = implode("\",\"",$line_values);
 			$line = "\"" .$line;
 			$line .= "\"\r\n";
+			echo $line;
 		}
 
 		/*foreach($entries as $row) {
