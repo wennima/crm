@@ -34,6 +34,8 @@ class Settings_PickListDependency_Edit_View extends Settings_Vtiger_Index_View {
 		$viewer->assign('RECORD_MODEL', $recordModel);
 		$viewer->assign('SELECTED_MODULE',$selectedModule);
 		$viewer->assign('PICKLIST_FIELDS',$recordModel->getAllPickListFields());
+		# allow multi column
+		$viewer->assign('TARGET_FIELDS',$recordModel->getAllPickListFields2());
 		$viewer->assign('PICKLIST_MODULES_LIST',$moduleModelList);
 		$viewer->assign('DEPENDENCY_GRAPH', $dependencyGraph);
 		$viewer->assign('QUALIFIED_MODULE', $qualifiedModuleName);

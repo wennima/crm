@@ -53,7 +53,7 @@
                                 <div class="controls col-sm-3 col-xs-3">
                                     <select id="targetField" name="targetField" class="select2 form-control" data-placeholder="{vtranslate('LBL_SELECT_FIELD', $QUALIFIED_MODULE)}" data-rule-required="true">
                                         <option value=''></option>
-                                        {foreach key=FIELD_NAME item=FIELD_LABEL from=$PICKLIST_FIELDS}
+                                        {foreach key=FIELD_NAME item=FIELD_LABEL from=$TARGET_FIELDS}
                                             <option value="{$FIELD_NAME}" {if $RECORD_MODEL->get('targetfield') eq $FIELD_NAME} selected {/if}>{vtranslate($FIELD_LABEL, $SELECTED_MODULE)}</option>
                                         {/foreach}
                                     </select>
