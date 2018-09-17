@@ -1395,8 +1395,8 @@ Vtiger.Class("Vtiger_Detail_Js",{
 	},
 
 	handlePickListDependencyMap : function(sourcePicklistName) {
-		//alert('handle dependencyMap');
-		alert(sourcePicklistname);
+		alert('handle dependencyMap');
+		alert(sourcePicklistName);
 		var container = this.getForm();
 		var picklistDependcyElemnt = jQuery('[name="picklistDependency"]',container);
 		if(picklistDependcyElemnt.length <= 0) {
