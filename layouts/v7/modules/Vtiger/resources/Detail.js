@@ -1395,15 +1395,18 @@ Vtiger.Class("Vtiger_Detail_Js",{
 	},
 
 	handlePickListDependencyMap : function(sourcePicklistName) {
-		alert('handle dependencyMap');
+		//alert('handle dependencyMap');
+		alert(sourcePicklistname);
 		var container = this.getForm();
 		var picklistDependcyElemnt = jQuery('[name="picklistDependency"]',container);
 		if(picklistDependcyElemnt.length <= 0) {
+			alert('return1');
 			return;
 		}
 		var picklistDependencyMapping = JSON.parse(picklistDependcyElemnt.val());
 		var sourcePicklists = Object.keys(picklistDependencyMapping);
 		if(sourcePicklists.length <= 0){
+			alert('return2');
 			return;
 		}
 
@@ -1421,6 +1424,7 @@ Vtiger.Class("Vtiger_Detail_Js",{
 			}
 			var targetPickList = jQuery('[name="'+targetPickListName+'"]',container);
 			if(targetPickList.length <= 0){
+				alert('return3');
 				return;
 			}
 
@@ -1449,6 +1453,7 @@ Vtiger.Class("Vtiger_Detail_Js",{
 				targetPickListSelectedValue = targetPickListMap[0]; // to automatically select picklist if only one picklistmap is present.
 			}
 			if((targetPickListName == 'group_id' || targetPickListName == 'assigned_user_id') && jQuery("[data-name="+ sourcePicklistName +"]").data('value') == ''){
+				alert('return4');
 				return false;
 			}
 			targetPickList.html(targetOptions).val(targetPickListSelectedValue).trigger("change");
