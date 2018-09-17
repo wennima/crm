@@ -3019,13 +3019,16 @@ Vtiger.Class("Vtiger_Detail_Js",{
 	 */
 	registerEventForPicklistDependencySetup : function(container){
 		var thisInstance = this;
+		alert('setup1');
 		var picklistDependcyElemnt = jQuery('[name="picklistDependency"]',container);
 		if(picklistDependcyElemnt.length <= 0) {
+			alert('setup2');
 			return;
 		}
 		var picklistDependencyMapping = JSON.parse(picklistDependcyElemnt.val());
 		var sourcePicklists = Object.keys(picklistDependencyMapping);
 		if(sourcePicklists.length <= 0){
+			alert('setup3');
 			return;
 		}
 
@@ -3052,7 +3055,6 @@ Vtiger.Class("Vtiger_Detail_Js",{
 				}
 				var targetPickList = jQuery('[data-name="'+targetPickListName+'"]',container);// end here?
 				if(targetPickList.length <= 0){
-					alert('test alert');
 					return;
 				}
 
