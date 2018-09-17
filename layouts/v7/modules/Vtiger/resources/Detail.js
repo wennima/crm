@@ -1411,6 +1411,7 @@ Vtiger.Class("Vtiger_Detail_Js",{
 		}
 
 		var configuredDependencyObject = picklistDependencyMapping[sourcePicklistName];
+		console.log(configuredDependencyObject);
 		var selectedValue = container.find('[data-name='+sourcePicklistName+']').data('value');
 		var targetObjectForSelectedSourceValue = configuredDependencyObject[selectedValue];
 		var picklistmap = configuredDependencyObject["__DEFAULT__"];
@@ -3019,16 +3020,13 @@ Vtiger.Class("Vtiger_Detail_Js",{
 	 */
 	registerEventForPicklistDependencySetup : function(container){
 		var thisInstance = this;
-		alert('setup1');
 		var picklistDependcyElemnt = jQuery('[name="picklistDependency"]',container);
 		if(picklistDependcyElemnt.length <= 0) {
-			alert('setup2');
 			return;
 		}
 		var picklistDependencyMapping = JSON.parse(picklistDependcyElemnt.val());
 		var sourcePicklists = Object.keys(picklistDependencyMapping);
 		if(sourcePicklists.length <= 0){
-			alert('setup3');
 			return;
 		}
 
