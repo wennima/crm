@@ -1422,9 +1422,9 @@ Vtiger.Class("Vtiger_Detail_Js",{
 			if(typeof targetPickListMap == "undefined"){
 				targetPickListMap = targetPickListValues;
 			}
-			var targetPickList = jQuery('[name="'+targetPickListName+'"]',container);
+			var targetPickList = jQuery('[name="'+targetPickListName+'"]',container); // '[name="'+targetPickListName+'[]"]'
 			if(targetPickList.length <= 0){
-				alert('return3');
+				alert('return3'); // end here
 				return;
 			}
 
@@ -3050,8 +3050,9 @@ Vtiger.Class("Vtiger_Detail_Js",{
 				if(typeof targetPickListMap == "undefined"){
 					targetPickListMap = targetPickListValues;
 				}
-				var targetPickList = jQuery('[data-name="'+targetPickListName+'"]',container);
+				var targetPickList = jQuery('[data-name="'+targetPickListName+'"]',container);// end here?
 				if(targetPickList.length <= 0){
+					alert('test alert');
 					return;
 				}
 
