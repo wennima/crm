@@ -1421,6 +1421,7 @@ Vtiger.Class("Vtiger_Detail_Js",{
 		jQuery.each(picklistmap,function(targetPickListName,targetPickListValues){
 			var targetPickListMap = targetObjectForSelectedSourceValue[targetPickListName];
 			if(typeof targetPickListMap == "undefined"){
+				console.log(targetPickListName + 'undefined');
 				targetPickListMap = targetPickListValues;
 			}
 			var targetPickList = jQuery('[name="'+targetPickListName+'"]',container); // '[name="'+targetPickListName+'[]"]'
