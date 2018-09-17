@@ -869,7 +869,6 @@ Vtiger_Edit_Js("Inventory_Edit_Js", {
 					options += '<option value="'+picklistName+'">'+pickListValue+'</option>';
 				}
 				element.html(options);
-				console.log('test options');
 				element.addClass('select2');
 			}
 
