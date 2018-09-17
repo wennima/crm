@@ -1400,18 +1400,14 @@ Vtiger.Class("Vtiger_Detail_Js",{
 	},
 
 	handlePickListDependencyMap : function(sourcePicklistName,is_multi=false) {
-		alert('handle dependencyMap');
-		alert(sourcePicklistName);
 		var container = this.getForm();
 		var picklistDependcyElemnt = jQuery('[name="picklistDependency"]',container);
 		if(picklistDependcyElemnt.length <= 0) {
-			alert('return1');
 			return;
 		}
 		var picklistDependencyMapping = JSON.parse(picklistDependcyElemnt.val());
 		var sourcePicklists = Object.keys(picklistDependencyMapping);
 		if(sourcePicklists.length <= 0){
-			alert('return2');
 			return;
 		}
 
@@ -1436,7 +1432,7 @@ Vtiger.Class("Vtiger_Detail_Js",{
 			}
 			
 			if(targetPickList.length <= 0){
-				alert('return3'); // end here
+				//alert('return3'); // mutlipicklist end here
 				return;
 			}
 
