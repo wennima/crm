@@ -190,7 +190,6 @@ Vtiger_Index_Js("Vtiger_Edit_Js",{
 		var sourcePickListElements = container.find(sourcePickListNames);
 
 		sourcePickListElements.on('change',function(e){
-            alert('changepicklist');
 			var currentElement = jQuery(e.currentTarget);
 			var sourcePicklistname = currentElement.attr('name');
 			var configuredDependencyObject = picklistDependencyMapping[sourcePicklistname];
