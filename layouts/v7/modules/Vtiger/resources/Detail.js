@@ -1187,7 +1187,7 @@ Vtiger.Class("Vtiger_Detail_Js",{
 		thisInstance.registerSaveOnEnterEvent(editElement);
 		jQuery('.editAction').addClass('hide');
 
-		if(fieldType == 'picklist' || fieldType == 'ownergroup' || fieldType == 'owner') {
+		if(fieldType == 'picklist' || fieldType == 'ownergroup' || fieldType == 'owner' || fieldType === 'multipicklist') {
 			var sourcePicklistFieldName = thisInstance.getDependentSourcePicklistName(fieldName);
 			if(sourcePicklistFieldName) {
 				thisInstance.handlePickListDependencyMap(sourcePicklistFieldName);
