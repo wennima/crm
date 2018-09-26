@@ -138,8 +138,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 	 * @return <Array> - List of Vtiger_Field_Model instances
 	 */
 	public function getListViewHeaders() {
-		#$log = LoggerManager::getLogger('SECURITY');
-        global $adb;
+		global $adb;
 		$listViewContoller = $this->get('listview_controller');
 		if($_SESSION['authenticated_user_id']){
            $currentUser = Users_Record_Model::getCurrentUserModel();

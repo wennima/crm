@@ -154,8 +154,8 @@ class Vtiger_List_View extends Vtiger_Index_View {
 	 */
 	public function initializeListViewContents(Vtiger_Request $request, Vtiger_Viewer $viewer) {
 		$moduleName = $request->getModule();
-		$log = LoggerManager::getLogger('SECURITY');
-		$log->debug('moduleName0 : '.$moduleName);
+		#$log = LoggerManager::getLogger('SECURITY');
+		#$log->debug('moduleName0 : '.$moduleName);
 		$cvId = $this->viewName;
 		$pageNumber = $request->get('page');
 		$orderBy = $request->get('orderby');
@@ -373,6 +373,11 @@ class Vtiger_List_View extends Vtiger_Index_View {
         if($moduleName =='SalesOrder'){
 			$_SESSION['order_list_headers'] = $this->listViewHeaders;
 			$_SESSION['order_list_entries'] = $this->listViewEntries;
+		}
+
+		if($moduleName =='PurchaseOrder'){
+			$_SESSION['purchaseorder_list_headers'] = $this->listViewHeaders;
+			$_SESSION['purchaseorder_list_entries'] = $this->listViewEntries;
 		}
 
 		$viewer->assign('ORDER_BY',$orderBy);

@@ -50,6 +50,14 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
                   return;
 			}
 		}
+		if($moduleName == 'PurchaseOrder'){
+			if($_SESSION['purchaseorder_list_headers'] && $_SESSION['purchaseorder_list_entries']){
+                  $headers = $_SESSION['purchaseorder_list_headers'];
+                  $entries = $_SESSION['purchaseorder_list_entries'];
+                  $this->output2($request,$headers,$entries);
+                  return;
+			}
+		}
 #new export for order end
 		$this->moduleInstance = Vtiger_Module_Model::getInstance($moduleName);
 		$this->moduleFieldInstances = $this->moduleFieldInstances($moduleName);
