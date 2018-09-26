@@ -41,7 +41,7 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 		
 #new export for order
 		$log = LoggerManager::getLogger('SECURITY');
-		$log->debug('module name : '.$moduleName);
+		#$log->debug('module name : '.$moduleName);
 		if($moduleName == 'SalesOrder'){
 			if($_SESSION['order_list_headers'] && $_SESSION['order_list_entries']){
                   $headers = $_SESSION['order_list_headers'];
