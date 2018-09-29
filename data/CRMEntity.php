@@ -874,6 +874,8 @@ class CRMEntity {
 			$this->column_fields = new TrackableObject();
 
 			if (!$result || $adb->num_rows($result) < 1) {
+				$log =& LoggerManager::getLogger('security');
+				$log->debug($sql);
 				throw new Exception($app_strings['LBL_RECORD_NOT_FOUND'], -1);
 			} else {
 				$resultrow = $adb->query_result_rowdata($result);
