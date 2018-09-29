@@ -875,7 +875,7 @@ class CRMEntity {
            $log =& LoggerManager::getLogger('security');
 			$log->debug('123');
 			if (!$result || $adb->num_rows($result) < 1) {
-                print_r($sql)
+                print_r($sql);
 				$log->debug($sql);
 				throw new Exception($app_strings['LBL_RECORD_NOT_FOUND'], -1);
 			} else {
