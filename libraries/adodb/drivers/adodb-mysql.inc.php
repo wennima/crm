@@ -482,6 +482,9 @@ class ADODB_mysql extends ADOConnection {
 			$this->_connectionID = mysql_pconnect($argHostname,$argUsername,$argPassword);
 		if ($this->_connectionID === false) return false;
 		if ($this->autoRollback) $this->RollbackTrans();
+		 // fix sql_mode 
+                mysql_query("SET SESSION SQL_MODE := ''"); 
+   // end fix sql_mode  
 		if ($argDatabasename) return $this->SelectDB($argDatabasename);
 		return true;
 	}
